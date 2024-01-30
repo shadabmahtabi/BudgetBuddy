@@ -1,0 +1,24 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    color: #222e50;
+    font-family: Gilroy;
+    user-select: none;
+    position: relative;
+}
+
+/* #fccb06 -> Golden,
+#222e50 -> Dark_blue,
+#edf7f6 -> Light_grey */

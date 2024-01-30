@@ -1,0 +1,4 @@
+1. time showing incorrectly.
+2. totalExpense and totalIncome are showing incorrectly after update. | ✓ |
+3. selection type not getting empty.
+4. select options are not changing to default.

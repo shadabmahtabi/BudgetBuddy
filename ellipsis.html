@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container
+        {
+            height: 20vh;
+            width: 90%;
+            background-color: aqua;
+            padding: 1vw;
+            overflow: hidden;
+        }
+        /* .ellipsis{
+            height: 100%;
+            width: 100%;
+        } */
+        /* .ellipsis p{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        } */
+        /* .ellipsis p{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: pre-wrap;
+        } */
+        .ellipsis{
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: pre-wrap;
+            /* text-overflow: ellipsis; */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="ellipsis">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore ex doloribus repellat aliquid, laborum ut facere? Tempore obcaecati voluptas quas. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam itaque modi incidunt a explicabo vel excepturi natus culpa repellendus quisquam.</p>
+        </div>
+    </div>
+</body>
+</html>

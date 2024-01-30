@@ -1,0 +1,55 @@
+.navBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    height: 10vmin;
+    width: 100%;
+    background-color: #222e50;
+    color: #edf7f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.logo {
+    height: 100%;
+    width: 13%;
+    /* background-color: rgba(255, 177, 177, 0.162); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: oh beloved;
+    font-size: 1.3vmax;
+    letter-spacing: .8vmax;
+    padding-left: 3vmax;
+}
+
+.logoImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.links {
+    height: 100%;
+    /* width: fit-content; */
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3vmax;
+    padding-right: 2vmax;
+    font-size: 1.2vmax;
+}
+
+.link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: .5vmax;
+    color: #edf7f6;
+    text-decoration: none;
+    /* background-color: rgb(120, 120, 120); */
+}

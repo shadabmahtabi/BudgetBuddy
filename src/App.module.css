@@ -1,0 +1,192 @@
+.appMain {
+    position: relative;
+    padding-top: 10vmin;
+}
+
+.updateFormDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    height: 100vmin;
+    width: 100vmax;
+    background-color: #0000001b;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .updateForm {
+        position: relative;
+        height: 80%;
+        width: 50%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5vmin;
+        border-radius: 1vmax;
+    }
+}
+
+.crossBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 3vmax;
+    width: 3vmax;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formHeading {
+    margin-bottom: 2vmin;
+    font-size: 2.2vmax;
+    font-weight: 600;
+}
+
+.divForSelect {
+    height: 7vmin;
+    width: 79%;
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.selectInput {
+    height: 100%;
+    width: 60%;
+    outline: none;
+    border: .15vmax solid #222e50;
+    background-color: #fff;
+    border-radius: 1vmax;
+    padding: 0 1vmax;
+    font-size: 1.1vmax;
+}
+
+.selectInput:last-child {
+    width: 30%;
+    font-size: 1.1vmax;
+}
+
+.amountInput {
+    height: 100%;
+    width: 55%;
+    padding: 0 1vmax;
+    font-size: 1.1vmax;
+    border-radius: 1vmax;
+    border: .15vmax solid #222e50;
+    outline: none;
+    background-color: #fff;
+}
+
+.amountInput:last-child {
+    width: 36%;
+    font-size: 1.1vmax;
+}
+
+.amountInput::-webkit-outer-spin-button,
+.amountInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.textArea {
+    height: 13vmin;
+    width: 74%;
+    outline: none;
+    border: .15vmax solid #222e50;
+    background-color: #fff;
+    border-radius: 1vmax;
+    padding: .5vmax 1vmax;
+    font-size: 1.1vmax;
+    resize: none;
+    font-family: Gilroy;
+}
+
+.submitBtn {
+    padding: .8vmax 1.5vmax;
+    font-size: 1.1vmax;
+    border-radius: 1vmax;
+    outline: none;
+    border: .15vmax solid #222e50;
+    background-color: #fff;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.submitBtn:hover {
+    background-color: #222e50;
+    color: #edf7f6;
+}
+
+.mainFormHeading {
+    position: relative;
+    height: 90%;
+    width: 45%;
+    /* background-color: rgb(255, 255, 197); */
+}
+
+.headingSpan {
+    /* font-size: 4vmax; */
+    color: #fccb06;
+}
+
+.headingCircle {
+    position: absolute;
+    top: 18%;
+    left: 35%;
+    z-index: 0;
+    height: 25vmax;
+    width: 25vmax;
+    background-color: #edf7f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.innerCircle {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+}
+
+.headingText {
+    position: absolute;
+    top: -8%;
+    left: -30%;
+    white-space: nowrap;
+    font-size: 4vmax;
+    font-family: satisfy;
+    margin-right: 120vmax;
+    /* font-size: 3.5vmax; */
+}
+
+.smallCircles {
+    position: absolute;
+    top: 10%;
+    right: 0%;
+    height: 3vmax;
+    width: 3vmax;
+    background-color: #fccb06;
+    border-radius: 50%;
+}
+
+.smallCircles:nth-child(1) {
+    height: 3vmax;
+    width: 3vmax;
+}
+
+.smallCircles:nth-child(2) {
+    top: 75%;
+    right: 72%;
+    height: 3vmax;
+    width: 3vmax;
+    background-color: #fff;
+    border: 1vmax solid #fccb06;
+}
