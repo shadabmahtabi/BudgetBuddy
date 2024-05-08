@@ -5,7 +5,6 @@ import Nav from "./Nav";
 import ExpenseList from "./ExpenseList";
 import Home from "./Home";
 import { toast } from "react-toastify";
-import Extra from "./extra";
 import TransactionTable from "./TransactionTable";
 import { full_data } from "./Context";
 
