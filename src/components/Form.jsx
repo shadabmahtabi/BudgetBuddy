@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import css from "./Form.module.css";
 import { toast } from "react-toastify";
-import { full_data } from "./Context";
+import { full_data } from "../Context";
 
 const CreateForm = (props) => {
 

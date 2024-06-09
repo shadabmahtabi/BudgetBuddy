@@ -37,7 +37,7 @@
 
 .divForSelect {
   height: 7vmin;
-  width: 79%;
+  width: 75%;
   /* background-color: yellow; */
   display: flex;
   align-items: center;
@@ -46,9 +46,9 @@
 
 .selectInput {
   height: 100%;
-  width: 60%;
+  width: 65%;
   outline: none;
-  border: .15vmax solid #222e50;
+  border: 0.15vmax solid #222e50;
   background-color: #fff;
   border-radius: 1vmax;
   padding: 0 1vmax;
@@ -56,17 +56,17 @@
 }
 
 .selectInput:last-child {
-  width: 30%;
+  width: 34%;
   font-size: 1.1vmax;
 }
 
 .amountInput {
   height: 100%;
-  width: 55%;
+  width: 63%;
   padding: 0 1vmax;
   font-size: 1.1vmax;
   border-radius: 1vmax;
-  border: .15vmax solid #222e50;
+  border: 0.15vmax solid #222e50;
   outline: none;
   background-color: #fff;
 }
@@ -84,26 +84,26 @@
 
 .textArea {
   height: 13vmin;
-  width: 74%;
+  width: 75%;
   outline: none;
-  border: .15vmax solid #222e50;
+  border: 0.15vmax solid #222e50;
   background-color: #fff;
   border-radius: 1vmax;
-  padding: .5vmax 1vmax;
+  padding: 0.5vmax 1vmax;
   font-size: 1.1vmax;
   resize: none;
   font-family: Gilroy;
 }
 
 .submitBtn {
-  padding: .8vmax 1.5vmax;
+  padding: 0.8vmax 1.5vmax;
   font-size: 1.1vmax;
   border-radius: 1vmax;
   outline: none;
-  border: .15vmax solid #222e50;
+  border: 0.15vmax solid #222e50;
   background-color: #fff;
   cursor: pointer;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .submitBtn:hover {
@@ -176,4 +176,114 @@
   width: 3vmax;
   background-color: #fff;
   border: 1vmax solid #fccb06;
+}
+
+/* ------------------------ Responsive -------------------------- */
+@media only screen and (max-width: 500px) {
+  .formMain {
+    height: 75vmax;
+    width: 100%;
+    /* background-color: rgba(0, 160, 0, 0.224); */
+    background-color: #edf7f6;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .forms {
+    height: 63%;
+    width: 100%;
+  }
+
+  .addStatementsForm {
+    height: 95%;
+    width: 95%;
+    background-color: #ffffff;
+    gap: 1.5vmax;
+  }
+
+  .formHeading {
+    margin-bottom: 2vmax;
+    font-size: 2.7vmax;
+  }
+
+  .divForSelect {
+    height: 5vmax;
+    width: 90%;
+  }
+
+  .selectInput {
+    height: 100%;
+    width: 63%;
+    font-size: 1.5vmax;
+  }
+
+  .selectInput:last-child {
+    width: 35%;
+    font-size: 1.5vmax;
+  }
+
+  .amountInput {
+    height: 100%;
+    width: 58%;
+    font-size: 1.5vmax;
+  }
+
+  .amountInput:last-child {
+    width: 40%;
+    font-size: 1.5vmax;
+  }
+
+  .textArea {
+    height: 10vmax;
+    width: 90%;
+    font-size: 1.5vmax;
+  }
+
+  .submitBtn {
+    padding: 0;
+    height: 4.5vmax;
+    width: 13.5vmax;
+    font-size: 1.5vmax;
+    background-color: #222e50;
+    color: #edf7f6;
+  }
+
+  /* ----------------------------------- */
+
+  .mainFormHeading {
+    height: 37%;
+    width: 100%;
+  }
+
+  .headingCircle {
+    left: initial;
+    right: 5%;
+    height: 22vmax;
+    width: 22vmax;
+    background-color: #fff;
+  }
+
+  .headingText {
+    top: -8%;
+    left: -60%;
+    font-size: 3.5vmax;
+    margin-right: 0;
+  }
+
+  .smallCircles {
+    position: absolute;
+    top: -5%;
+    right: 5%;
+    height: 3vmax;
+    width: 3vmax;
+    background-color: #fccb06;
+    border-radius: 50%;
+  }
+
+  .smallCircles:nth-child(2) {
+    top: initial;
+    bottom: -10%;
+    right: initial;
+    left: 5%;
+  }
 }

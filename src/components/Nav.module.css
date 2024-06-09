@@ -1,0 +1,124 @@
+.navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  height: 10vmin;
+  width: 100%;
+  background-color: #222e50;
+  color: #edf7f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 100%;
+  width: 13%;
+  /* background-color: rgba(255, 177, 177, 0.162); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: oh beloved;
+  font-size: 1.3vmax;
+  letter-spacing: 0.8vmax;
+  padding-left: 3vmax;
+}
+
+.logoImg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.links {
+  height: 100%;
+  /* width: fit-content; */
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3vmax;
+  padding-right: 2vmax;
+  font-size: 1.2vmax;
+}
+
+.link {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5vmax;
+  color: #edf7f6;
+  text-decoration: none;
+  /* background-color: rgb(120, 120, 120); */
+}
+
+.menuBtn,
+.menu {
+  display: none;
+}
+
+/* ------------------------ Responsive -------------------------- */
+@media only screen and (max-width: 500px) {
+  .navBar {
+    height: 8vmax;
+    width: 100%;
+  }
+
+  .logo {
+    height: 100%;
+    width: 30%;
+    padding-left: 1vmax;
+  }
+
+  .logoImg {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .link {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 1.5vmax;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding-left: 5vmax;
+    /* background-color: rgb(120, 120, 120); */
+  }
+
+  .menuBtn {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-left: auto;
+    /* background-color: rgb(225, 152, 152); */
+    color: #edf7f6;
+  }
+
+  .menu {
+    display: initial;
+    position: absolute;
+    top: 8vmax;
+    left: 0;
+    z-index: 99;
+    height: 92vmax;
+    width: 100%;
+    background-color: #222e50bd;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,177 @@
+.formMain {
+  height: 100vmin;
+  width: 100%;
+  /* background-color: green; */
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  padding-top: 5vmax;
+}
+
+.formDiv {
+  height: 95%;
+  width: 95%;
+  background-color: #edf7f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vmin;
+  border-radius: 1vmax;
+}
+
+.forms {
+  height: 95%;
+  width: 60%;
+  /* background-color: #00423b; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5vmin;
+  border-radius: 1vmax;
+}
+
+.formHeading {
+  margin-bottom: 2vmin;
+  font-size: 2.2vmax;
+  font-weight: 600;
+}
+
+.name {
+  height: 8%;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nameInput {
+  height: 100%;
+  width: 49%;
+  padding: 0 1vmax;
+  font-size: 1.1vmax;
+  border-radius: 1vmax;
+  border: 0.15vmax solid #222e50;
+  outline: none;
+  background-color: #fff;
+}
+
+.emailInput {
+  height: 8%;
+  width: 50%;
+  padding: 0 1vmax;
+  font-size: 1.1vmax;
+  border-radius: 1vmax;
+  border: 0.15vmax solid #222e50;
+  outline: none;
+  background-color: #fff;
+}
+
+.passwordInput {
+  height: 8%;
+  width: 50%;
+  padding: 0 1vmax;
+  font-size: 1.1vmax;
+  border-radius: 1vmax;
+  border: 0.15vmax solid #222e50;
+  outline: none;
+  background-color: #fff;
+}
+
+.addLines {
+  font-weight: 400;
+}
+
+.changeFormBtn {
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.submitBtn {
+  padding: 0.8vmax 1.5vmax;
+  font-size: 1.1vmax;
+  border-radius: 1vmax;
+  outline: none;
+  border: 0.15vmax solid #222e50;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.submitBtn:hover {
+  background-color: #222e50;
+  color: #edf7f6;
+}
+
+/* ------------------------ Responsive -------------------------- */
+@media only screen and (max-width: 500px) {
+  .formMain {
+    height: 92vmax;
+    width: 100%;
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-top: 4.5vmax; */
+  }
+
+  .formDiv {
+    height: 50%;
+    width: 95%;
+    background-color: #edf7f6;
+  }
+
+  .forms {
+    height: 100%;
+    width: 100%;
+    /* background-color: #00423b; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vmax;
+  }
+
+  .formHeading {
+    margin-bottom: 2vmax;
+    font-size: 2.7vmax;
+    font-weight: 600;
+  }
+
+  .name {
+    height: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5vmax;
+  }
+
+  .nameInput {
+    height: 100%;
+    width: 49%;
+    font-size: 0.75rem;
+  }
+
+  .emailInput {
+    height: 10%;
+    width: 80%;
+    font-size: 0.75rem;
+  }
+
+  .passwordInput {
+    height: 10%;
+    width: 80%;
+    font-size: 0.75rem;
+  }
+
+  .submitBtn {
+    padding: 0;
+    height: 4.5vmax;
+    width: 13.5vmax;
+    font-size: 0.75rem;
+    background-color: #222e50;
+    color: #edf7f6;
+  }
+
+}
