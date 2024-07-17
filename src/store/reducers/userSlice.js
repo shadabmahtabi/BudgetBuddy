@@ -25,22 +25,26 @@ export const loginUser = createAsyncThunk("user/login", async (data) => {
   });
   localStorage.setItem('isAuthenticated', 'true');
   localStorage.setItem('user', JSON.stringify(response.data.response));
-  console.log(response.data.response)
+  // console.log(response.data.response)
   return response.data.response;
 });
 
 export const registerUser = createAsyncThunk("user/register", async (data) => {
-  const response = await axios.put(`${import.meta.env.VITE_APP_URL}/register`, {
+  const response = await axios.post(`${import.meta.env.VITE_APP_URL}/register`, {
     firstname: data.firstname,
     lastname: data.lastname,
     email: data.email,
     password: data.password,
   });
+  localStorage.setItem('isAuthenticated', 'true');
+  localStorage.setItem('user', JSON.stringify(response.data.response));
+  console.log(response.data.response)
   return response.data.response;
 });
 
 export const logoutUser = createAsyncThunk("user/logout", async () => {
   const response = await axios.get(`${import.meta.env.VITE_APP_URL}/logout`);
+  console.log({"response" : response})
   localStorage.removeItem('isAuthenticated');
   localStorage.removeItem('user');
   return response.data.response;
@@ -105,15 +109,20 @@ const userSlice = createSlice({
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
+        state.user = null;
+        state.error = null;
+        state.isAuthenticated = false;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
         state.response = "register";
+        state.isAuthenticated = true;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+        state.isAuthenticated = false;
       });
 
     builder

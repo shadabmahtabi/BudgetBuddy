@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import css from "./Login.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../store/reducers/userSlice";
+import { loginUser, registerUser } from "../store/reducers/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -15,7 +15,7 @@ const Login = () => {
   const [lastname, setLastname] = useState("");
   const [changeForm, setChangeForm] = useState(false);
 
-  const { loading, error } = useSelector((state) => state.user)
+  const { loading, error } = useSelector((state) => state.user);
 
   const LoginHandler = (e) => {
     e.preventDefault();
@@ -29,15 +29,35 @@ const Login = () => {
         console.log(result.error.message);
       } else {
         // console.log("Logged in successfully");
-        setEmail("")
-        setPassword("")
-        navigate("/")
+        setEmail("");
+        setPassword("");
+        navigate("/");
       }
     });
   };
 
   const RegisterHandler = (e) => {
-    e.prevenDefault();
+    e.preventDefault();
+    let credentials = {
+      email,
+      password,
+      firstname,
+      lastname,
+    };
+
+    dispatch(registerUser(credentials)).then((result) => {
+      if (result.error) {
+        console.log(result.error.message);
+        toast.error(result.error.message)
+      } else {
+        toast.success("Registered successfully");
+        setEmail("");
+        setPassword("");
+        setFirstname("");
+        setLastname("");
+        navigate("/");
+      }
+    });
   };
 
   // if (error) {
@@ -77,7 +97,11 @@ const Login = () => {
                 Register now
               </span>
             </h5>
-            { loading ? <button className={css.submitBtn}>Loading...</button> : <button className={css.submitBtn}>Login</button>}
+            {loading ? (
+              <button className={css.submitBtn}>Loading...</button>
+            ) : (
+              <button className={css.submitBtn}>Login</button>
+            )}
           </form>
         ) : (
           <form
@@ -124,7 +148,11 @@ const Login = () => {
                 Login now
               </span>
             </h5>
-            <button className={css.submitBtn}>Register</button>
+            {loading ? (
+              <button className={css.submitBtn}>Loading...</button>
+            ) : (
+              <button className={css.submitBtn}>Register</button>
+            )}
           </form>
         )}
       </div>
