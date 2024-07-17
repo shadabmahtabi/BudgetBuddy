@@ -40,9 +40,9 @@ const Login = () => {
     e.prevenDefault();
   };
 
-  if (error) {
-    toast.error(error)
-  }
+  // if (error) {
+  //   toast.error(error)
+  // }
 
   return (
     <div className={css.formMain}>

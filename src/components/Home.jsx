@@ -5,7 +5,7 @@ const Home = (props) => {
   const { totalIncome, totalExpense, remainingAmount } = useSelector(
     (state) => state.user
   );
-  console.log({ totalIncome, totalExpense, remainingAmount })
+  // console.log({ totalIncome, totalExpense, remainingAmount })
   // const { totalIncome, setTotalIncome, totalExpense, setTotalExpense } = props;
 
   return (

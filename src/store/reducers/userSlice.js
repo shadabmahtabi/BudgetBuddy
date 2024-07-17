@@ -4,18 +4,28 @@ import axios from "axios";
 const userState = {
   updateState: false,
   loading: false,
-  user: null,
+  user: JSON.parse(localStorage.getItem('user')) || null,
   error: null,
   response: null,
-  isAuthenticated: false
+  isAuthenticated: !!localStorage.getItem('isAuthenticated')
 };
+
+export const homepage = createAsyncThunk("user/homepage", async () => {
+  const response = await axios.get("http://localhost:8080/");
+  localStorage.setItem('isAuthenticated', 'true');
+  localStorage.setItem('user', JSON.stringify(response.data.response));
+  console.log(response.data.response)
+  return response.data.response;
+});
 
 export const loginUser = createAsyncThunk("user/login", async (data) => {
   const response = await axios.post("http://localhost:8080/login", {
     email: data.email,
     password: data.password,
   });
-  // localStorage.setItem(('user', JSON.stringify(response.data.response)))
+  localStorage.setItem('isAuthenticated', 'true');
+  localStorage.setItem('user', JSON.stringify(response.data.response));
+  console.log(response.data.response)
   return response.data.response;
 });
 
@@ -29,8 +39,10 @@ export const registerUser = createAsyncThunk("user/register", async (data) => {
   return response.data.response;
 });
 
-export const logoutUser = createAsyncThunk("user/logout", async (data) => {
+export const logoutUser = createAsyncThunk("user/logout", async () => {
   const response = await axios.get("http://localhost:8080/logout");
+  localStorage.removeItem('isAuthenticated');
+  localStorage.removeItem('user');
   return response.data.response;
 });
 
@@ -49,6 +61,25 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder
+      .addCase(homepage.pending, (state) => {
+        state.loading = true;
+
+      })
+      .addCase(homepage.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log(action.payload)
+        state.user = action.payload;
+        state.response = "login";
+        state.isAuthenticated = true;
+        
+      })
+      .addCase(homepage.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+        state.isAuthenticated = false;
+      });
+
     builder
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
