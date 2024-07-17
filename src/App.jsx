@@ -23,6 +23,8 @@ const App = () => {
   //   //   second
   //   // }
   // }, [])
+
+  console.log(import.meta.env.VITE_APP_URL)
   
 
   return (

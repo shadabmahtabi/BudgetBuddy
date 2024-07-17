@@ -11,7 +11,7 @@ const userState = {
 };
 
 export const homepage = createAsyncThunk("user/homepage", async () => {
-  const response = await axios.get("http://localhost:8080/");
+  const response = await axios.get(`${import.meta.env.VITE_APP_URL}/`);
   localStorage.setItem('isAuthenticated', 'true');
   localStorage.setItem('user', JSON.stringify(response.data.response));
   console.log(response.data.response)
@@ -19,7 +19,7 @@ export const homepage = createAsyncThunk("user/homepage", async () => {
 });
 
 export const loginUser = createAsyncThunk("user/login", async (data) => {
-  const response = await axios.post("http://localhost:8080/login", {
+  const response = await axios.post(`${import.meta.env.VITE_APP_URL}/login`, {
     email: data.email,
     password: data.password,
   });
@@ -30,7 +30,7 @@ export const loginUser = createAsyncThunk("user/login", async (data) => {
 });
 
 export const registerUser = createAsyncThunk("user/register", async (data) => {
-  const response = await axios.put("http://localhost:8080/register", {
+  const response = await axios.put(`${import.meta.env.VITE_APP_URL}/register`, {
     firstname: data.firstname,
     lastname: data.lastname,
     email: data.email,
@@ -40,7 +40,7 @@ export const registerUser = createAsyncThunk("user/register", async (data) => {
 });
 
 export const logoutUser = createAsyncThunk("user/logout", async () => {
-  const response = await axios.get("http://localhost:8080/logout");
+  const response = await axios.get(`${import.meta.env.VITE_APP_URL}/logout`);
   localStorage.removeItem('isAuthenticated');
   localStorage.removeItem('user');
   return response.data.response;
