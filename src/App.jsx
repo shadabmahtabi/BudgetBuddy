@@ -1,46 +1,48 @@
-import React, { useEffect } from 'react'
-import Allcomponents from './components/Allcomponents'
-import Nav from './components/Nav'
-import Login from './components/Login'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import ProtectedRoute from './Pages/ProtectedRoute'
-import { useDispatch } from 'react-redux'
-import { homepage } from './store/reducers/userSlice'
-import { toast } from 'react-toastify'
+import React, { useEffect } from "react";
+import Allcomponents from "./components/Allcomponents";
+import Nav from "./components/Nav";
+import Login from "./components/Login";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import ProtectedRoute from "./Pages/ProtectedRoute";
+import { useDispatch, useSelector } from "react-redux";
+import { homepage } from "./store/reducers/userSlice";
+import { toast } from "react-toastify";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
   // useEffect(() => {
-  //   dispatch(homepage()).then(result => {
-  //     if (result.error) {
-  //       toast.error("Please login to access the resouce.")
-  //       // console.log(result.error.message)
-  //     }
-  //   })
-  
-  //   // return () => {
-  //   //   second
-  //   // }
-  // }, [])
-
-  console.log(import.meta.env.VITE_APP_URL)
-  
+  //   if (localStorage.getItem("isAuthenticated")) {
+  //     dispatch(homepage());
+  //   }
+  // }, [dispatch]);
 
   return (
     <>
       <Nav />
+      {/* <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              isAuthenticated ? <Allcomponents /> : <Navigate to="/login" />
+            }
+          />
+        </Routes>
+      </BrowserRouter> */}
+
       <BrowserRouter>
         <Routes>
           <Route exact path="/login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<Allcomponents />} />
           </Route>
-          {/* <Route path="/" element={<Allcomponents />} /> */}
         </Routes>
       </BrowserRouter>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

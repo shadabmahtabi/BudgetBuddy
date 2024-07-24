@@ -1,24 +1,18 @@
 import css from "./Nav.module.css";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { logoutUser } from "../store/reducers/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../store/reducers/userSlice";
 import { toast } from "react-toastify";
 
 const Nav = () => {
   const [seen, setSeen] = useState(false);
   const dispatch = useDispatch();
+  const { token, user, loading } = useSelector((state) => state.user);
 
   const handleLogout = () => {
-    console.log("clicked");
-    dispatch(logoutUser()).then((result) => {
-      if (result.error) {
-        console.log(result.error.message);
-        toast.error(result.error.message);
-      } else {
-        toast.success("Logged out successfully");
-      }
-    });
+    // console.log("clicked");
+    dispatch(signOut());
   };
 
   return (
@@ -26,7 +20,7 @@ const Nav = () => {
       <div className={css.logo}>
         <img src={logo} alt="" className={css.logoImg} />
       </div>
-      <div className={css.links}>
+      {token ? <div className={css.links}>
         <a href="#home" className={css.link}>
           <i className="ri-home-smile-fill"></i> Home
         </a>
@@ -37,17 +31,24 @@ const Nav = () => {
           <i className="ri-eye-2-fill"></i> View Statements
         </a>
         <a href="#" className={css.link}>
+        <i className="ri-phone-fill"></i> Contact Us
+        </a>
+        <a href="#" className={css.link}>
           <i className="ri-user-fill"></i> Account
         </a>
         {/* <a href='#' className={css.link}>Contact Us</a> */}
-      </div>
-      <div className={css.menuBtn} onClick={() => setSeen(!seen)}>
-        {seen ? (
-          <i className="ri-close-line"></i>
-        ) : (
-          <i className="ri-menu-4-fill"></i>
-        )}
-      </div>
+      </div> : ""}
+      {token ? (
+        <div className={css.menuBtn} onClick={() => setSeen(!seen)}>
+          {seen ? (
+            <i className="ri-close-line"></i>
+          ) : (
+            <i className="ri-menu-4-fill"></i>
+          )}
+        </div>
+      ) : (
+        ""
+      )}
       {seen ? (
         <div className={css.menu}>
           <a href="#home" className={css.link} onClick={() => setSeen(!seen)}>
