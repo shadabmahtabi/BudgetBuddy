@@ -17,8 +17,18 @@ const Login = () => {
 
   const { loading, error } = useSelector((state) => state.user);
 
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return emailRegex.test(email);
+  };
+
   const LoginHandler = (e) => {
     e.preventDefault();
+
+    if (!isValidEmail(email)) {
+      return toast.error("Invalid email address");
+    }
+
     let credentials = {
       email,
       password,
@@ -26,9 +36,9 @@ const Login = () => {
 
     dispatch(loginUser(credentials)).then((result) => {
       if (result.error) {
-        console.log(result.error.message);
+        toast.error("Wrong Credentials!");
       } else {
-        // console.log("Logged in successfully");
+        toast.success("Logged in successfully");
         setEmail("");
         setPassword("");
         navigate("/");
@@ -38,6 +48,11 @@ const Login = () => {
 
   const RegisterHandler = (e) => {
     e.preventDefault();
+
+    if (!isValidEmail(email)) {
+      return toast.error("Invalid email address");
+    }
+
     let credentials = {
       email,
       password,
@@ -48,7 +63,7 @@ const Login = () => {
     dispatch(registerUser(credentials)).then((result) => {
       if (result.error) {
         console.log(result.error.message);
-        toast.error(result.error.message)
+        toast.error("Error Registration!");
       } else {
         toast.success("Registered successfully");
         setEmail("");
@@ -75,6 +90,7 @@ const Login = () => {
             <h2 className={css.formHeading}>Login yourself here</h2>
             <input
               type="email"
+              name="email"
               placeholder="Email"
               className={css.emailInput}
               onChange={(e) => setEmail(e.target.value)}
@@ -83,6 +99,7 @@ const Login = () => {
             />
             <input
               type="password"
+              name="password"
               placeholder="Password"
               className={css.passwordInput}
               onChange={(e) => setPassword(e.target.value)}
@@ -112,6 +129,7 @@ const Login = () => {
             <div className={css.name}>
               <input
                 type="text"
+                name="firstname"
                 placeholder="First Name"
                 className={css.nameInput}
                 onChange={(e) => setFirstname(e.target.value)}
@@ -119,6 +137,7 @@ const Login = () => {
               />
               <input
                 type="text"
+                name="lastname"
                 placeholder="Last Name"
                 className={css.nameInput}
                 onChange={(e) => setLastname(e.target.value)}
@@ -127,6 +146,7 @@ const Login = () => {
             </div>
             <input
               type="email"
+              name="email"
               placeholder="Email"
               className={css.emailInput}
               onChange={(e) => setEmail(e.target.value)}
@@ -134,6 +154,7 @@ const Login = () => {
             />
             <input
               type="password"
+              name="password"
               placeholder="Password"
               className={css.passwordInput}
               onChange={(e) => setPassword(e.target.value)}

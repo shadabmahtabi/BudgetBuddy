@@ -28,8 +28,8 @@ export const loginUser = createAsyncThunk(
         },
         { withCredentials: true }
       );
-      localStorage.setItem('token', JSON.stringify(response.data.response));
-      console.log(response.data.response);
+      localStorage.setItem("token", JSON.stringify(response.data.response));
+      // console.log(response.data.response);
       return response.data.response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -37,24 +37,20 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const registerUser = createAsyncThunk("user/register", async (data) => {
-  const response = await axios.post("/user/register", {
-    firstname: data.firstname,
-    lastname: data.lastname,
-    email: data.email,
-    password: data.password,
-  });
-  // localStorage.setItem('user', JSON.stringify(response.data.response));
-  console.log(response.data.response);
-  return response.data.response;
-});
-
-export const logoutUser = createAsyncThunk("user/logout", async () => {
-  const response = await axios.get(`${import.meta.env.VITE_APP_URL}/logout`);
-  console.log({ response: response });
-  // localStorage.removeItem('user');
-  return response.data.response;
-});
+export const registerUser = createAsyncThunk(
+  "user/register",
+  async (data, thunkAPI) => {
+    const response = await axiosInstance.post("/user/register", {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      password: data.password,
+    });
+    // localStorage.setItem('user', JSON.stringify(response.data.response));
+    console.log(response.data.response);
+    return response.data.response;
+  }
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -88,44 +84,27 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
         state.token = action.payload;
-        // state.user = action.payload;
-        // state.response = "login";
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+        state.token = null;
       });
 
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         console.log(action.payload);
         state.loading = false;
-        state.user = action.payload;
-        state.response = "register";
+        state.token = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      });
-
-    builder
-      .addCase(logoutUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.loading = false;
-        state.user = null;
-        state.response = "logout";
-      })
-      .addCase(logoutUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
+        state.token = null;
       });
   },
 });

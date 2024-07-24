@@ -36,6 +36,15 @@ const Nav = () => {
         <a href="#" className={css.link}>
           <i className="ri-user-fill"></i> Account
         </a>
+        <div
+            className={css.link}
+            onClick={() => {
+              setSeen(!seen);
+              handleLogout();
+            }}
+          >
+            <i className="ri-logout-box-r-line"></i> Logout
+          </div>
         {/* <a href='#' className={css.link}>Contact Us</a> */}
       </div> : ""}
       {token ? (

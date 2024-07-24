@@ -82,7 +82,7 @@ const ExpenseList = (props) => {
 
   return (
     <div className={css.mainBox} id="ViewStatements">
-      <h1 className={css.mainHeading}>View Your Statements As You Want</h1>
+      <h1 className={css.mainHeading}>View Your Statements</h1>
       <div className={css.listBox}>
         <div className={css.categoryBox}>
           <div className={css.statementsData}></div>
