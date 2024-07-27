@@ -1,12 +1,16 @@
 import { useSelector } from "react-redux";
 import css from "./Home.module.css";
+import useAxiosWithInterceptors from "../utils/useAxiosWithInterceptors";
 
 const Home = (props) => {
-  const { totalIncome, totalExpense, remainingAmount } = useSelector(
+  const { totalIncome, totalExpense, remainingAmount, user } = useSelector(
     (state) => state.user
   );
-  // console.log({ totalIncome, totalExpense, remainingAmount })
+
+  // console.log(user)
   // const { totalIncome, setTotalIncome, totalExpense, setTotalExpense } = props;
+
+  useAxiosWithInterceptors();
 
   return (
     <div className={css.main} id="home">

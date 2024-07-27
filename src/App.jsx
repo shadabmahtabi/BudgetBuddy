@@ -10,13 +10,17 @@ import { toast } from "react-toastify";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.user);
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("isAuthenticated")) {
-  //     dispatch(homepage());
-  //   }
-  // }, [dispatch]);
+  useEffect(() => {
+    if (error === "Token has expired"){
+      toast.error("Session Expired!");
+    } else if (error === "Token is not valid"){
+      toast.error("Invalid Session!");
+    } else {
+      toast.error(error)
+    }
+  }, [error]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import css from "./Allcomponents.module.css";
 import Form from "./Form";
 import Nav from "./Nav";
@@ -7,8 +7,16 @@ import Home from "./Home";
 import { toast } from "react-toastify";
 import TransactionTable from "./TransactionTable";
 import { full_data } from "../Context";
+import { useDispatch, useSelector } from "react-redux";
+import { homepage } from "../store/reducers/userSlice";
 
 const Allcomponents = () => {
+  const dispatch = useDispatch();
+  const { user, error } = useSelector(state => state.user)
+
+  useEffect(() => {
+    dispatch(homepage())
+  }, []);
 
   const [statements, setStatements] = useContext(full_data);
   const [totalIncome, setTotalIncome] = useState(0);

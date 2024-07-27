@@ -36,9 +36,9 @@ const Login = () => {
 
     dispatch(loginUser(credentials)).then((result) => {
       if (result.error) {
-        toast.error("Wrong Credentials!");
+        toast.error(error);
       } else {
-        toast.success("Logged in successfully");
+        // toast.success("Logged in successfully");
         setEmail("");
         setPassword("");
         navigate("/");
@@ -96,6 +96,7 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               autoComplete="true"
+              required
             />
             <input
               type="password"
@@ -104,6 +105,7 @@ const Login = () => {
               className={css.passwordInput}
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              required
             />
             <h5 className={css.addLines}>
               Don't have an account?{" "}
@@ -134,6 +136,7 @@ const Login = () => {
                 className={css.nameInput}
                 onChange={(e) => setFirstname(e.target.value)}
                 value={firstname}
+                required
               />
               <input
                 type="text"
@@ -142,6 +145,7 @@ const Login = () => {
                 className={css.nameInput}
                 onChange={(e) => setLastname(e.target.value)}
                 value={lastname}
+                required
               />
             </div>
             <input
@@ -151,6 +155,7 @@ const Login = () => {
               className={css.emailInput}
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             />
             <input
               type="password"
@@ -159,6 +164,7 @@ const Login = () => {
               className={css.passwordInput}
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              required
             />
             <h5 className={css.addLines}>
               Already have an account?{" "}
