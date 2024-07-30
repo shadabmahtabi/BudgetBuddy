@@ -10,7 +10,8 @@ const userState = {
 
 export const homepage = createAsyncThunk(
   "user/homepage",
-  async (_, thunkAPI) => { // Include the second argument, thunkAPI
+  async (_, thunkAPI) => {
+    // Include the second argument, thunkAPI
     try {
       const response = await axiosInstance.get(`/user`);
       return response.data.response;
@@ -53,10 +54,10 @@ export const registerUser = createAsyncThunk(
         password: data.password,
       });
       localStorage.setItem("token", response.data.response);
-      console.log(response.data.response)
+      // console.log(response.data.response)
       return response.data.response;
     } catch (error) {
-      console.log(error.response.data)
+      // console.log(error.response.data);
       return thunkAPI.rejectWithValue(error.response.data.response);
     }
   }
@@ -67,6 +68,7 @@ const userSlice = createSlice({
   initialState: userState,
   reducers: {
     signOut(state) {
+      state.user = null;
       state.token = null;
       localStorage.removeItem("token");
     },
@@ -78,11 +80,19 @@ const userSlice = createSlice({
       })
       .addCase(homepage.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload._doc;
+        state.user = action.payload;
       })
       .addCase(homepage.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || action.error.message;
+        if (
+          action.payload === "User not found" ||
+          action.error.message === "User not found"
+        ) {
+          state.user = null;
+          state.token = null;
+          localStorage.removeItem("token");
+        }
       });
 
     builder

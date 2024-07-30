@@ -9,6 +9,7 @@ import TransactionTable from "./TransactionTable";
 import { full_data } from "../Context";
 import { useDispatch, useSelector } from "react-redux";
 import { homepage } from "../store/reducers/userSlice";
+import { viewStatement } from "../store/reducers/statementSlice";
 
 const Allcomponents = () => {
   const dispatch = useDispatch();

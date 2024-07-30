@@ -62,10 +62,11 @@ const Login = () => {
 
     dispatch(registerUser(credentials)).then((result) => {
       if (result.error) {
-        console.log(result.error.message);
-        toast.error("Error Registration!");
+        return;
+        // console.log(result.error.message);
+        // toast.error("Error Registration!");
       } else {
-        toast.success("Registered successfully");
+        // toast.success("Registered successfully");
         setEmail("");
         setPassword("");
         setFirstname("");
@@ -74,11 +75,7 @@ const Login = () => {
       }
     });
   };
-
-  // if (error) {
-  //   toast.error(error)
-  // }
-
+  
   return (
     <div className={css.formMain}>
       <div className={css.formDiv}>

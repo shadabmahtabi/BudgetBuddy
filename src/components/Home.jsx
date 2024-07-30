@@ -1,14 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import css from "./Home.module.css";
 import useAxiosWithInterceptors from "../utils/useAxiosWithInterceptors";
+import { useState } from "react";
+import { homepage } from "../store/reducers/userSlice";
 
 const Home = (props) => {
-  const { totalIncome, totalExpense, remainingAmount, user } = useSelector(
+  const { user } = useSelector(
     (state) => state.user
   );
-
-  // console.log(user)
-  // const { totalIncome, setTotalIncome, totalExpense, setTotalExpense } = props;
+  
 
   useAxiosWithInterceptors();
 
@@ -29,19 +29,19 @@ const Home = (props) => {
         <div className={css.showBox}>
           <h1>
             Total Incomes ↴ <br />
-            {totalIncome /*.toLocaleString("en-IN")*/}
+            {user ? user.totalIncome : 0 /*.toLocaleString("en-IN")*/}
           </h1>
         </div>
         <div className={css.showBox}>
           <h1>
             Total Expenses ↴ <br />
-            {totalExpense /*.toLocaleString("en-IN")*/}
+            {user ? user.totalExpense : 0 /*.toLocaleString("en-IN")*/}
           </h1>
         </div>
         <div className={css.showBox}>
           <h1>
             Total Remaining ↴ <br />
-            {remainingAmount /*.toLocaleString("en-IN")*/}
+            {user ? user.remainingAmount : 0 /*.toLocaleString("en-IN")*/}
           </h1>
         </div>
       </div>

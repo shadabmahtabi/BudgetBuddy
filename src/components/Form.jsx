@@ -1,9 +1,15 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import css from "./Form.module.css";
 import { toast } from "react-toastify";
 import { full_data } from "../Context";
+import { useDispatch, useSelector } from "react-redux";
+import { addStatement } from "../store/reducers/statementSlice";
+import { homepage } from "../store/reducers/userSlice";
 
 const CreateForm = (props) => {
+
+  const dispatch = useDispatch();
+  const { loading, error, message } = useSelector(state => state.statement)
 
   const [statements, setStatements] = useContext(full_data);
 
@@ -37,6 +43,8 @@ const CreateForm = (props) => {
     }
 
     let newStatement = { amount, category, type, description, date, time };
+    
+    dispatch(addStatement(newStatement))
     // console.log(newStatement)
     const copyStatements = [...statements];
     copyStatements.push(newStatement);
@@ -52,7 +60,7 @@ const CreateForm = (props) => {
       setTotalExpense(totalAmount)
     }
 
-    toast.success("New statement is added.")
+    toast.success(message || "Statement added.")
 
     setAmount('')
 
