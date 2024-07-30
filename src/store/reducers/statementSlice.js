@@ -50,16 +50,30 @@ export const viewStatement = createAsyncThunk(
   }
 );
 
+export const deleteStatement = createAsyncThunk(
+  "statement/delete",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axiosInstance.delete(`/statement/delete/${id}`);
+      console.log(response);
+      return response.data.response;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response);
+    }
+  }
+);
+
 const statementSlice = createSlice({
   name: "statements",
   initialState: statements,
   reducers: {
-    removeStatements(state){
+    removeStatements(state) {
       state.statements = [];
       state.message = "";
       state.error = null;
       state.loading = false;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -86,12 +100,31 @@ const statementSlice = createSlice({
         state.error = null;
         // console.log(action.payload)
         state.statements = action.payload;
-        state.message = "Fetched Statements"
+        state.message = "Fetched Statements";
       })
       .addCase(viewStatement.rejected, (state, action) => {
         (state.loading = false),
           (state.error = action.payload),
           (state.message = "");
+      });
+    builder
+      .addCase(deleteStatement.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.message = "";
+      })
+      .addCase(deleteStatement.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        console.log(action.payload)
+        state.message = "Delete Statement";
+        state.statements = state.statements.filter(
+          (itm) => itm._id != action.payload._id
+        )
+      })
+      .addCase(deleteStatement.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

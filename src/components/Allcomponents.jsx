@@ -13,14 +13,14 @@ import { viewStatement } from "../store/reducers/statementSlice";
 
 const Allcomponents = () => {
   const dispatch = useDispatch();
-  const { user, error } = useSelector(state => state.user)
-  const { loading, statements, message } = useSelector(state => state.statements)
-  console.log({ loading, statements, message })
+  const { user, error } = useSelector((state) => state.user);
+  const { loading, statements, message } = useSelector(
+    (state) => state.statements
+  );
 
   useEffect(() => {
-    dispatch(homepage())
+    dispatch(homepage());
   }, []);
-
 
   // const [statements, setStatements] = useContext(full_data);
   const [totalIncome, setTotalIncome] = useState(0);
@@ -243,18 +243,7 @@ const Allcomponents = () => {
         selectionHandler={selectionHandler}
       />
 
-      <ExpenseList
-        // statements={statements}
-        // setStatements={setStatements}
-        totalIncome={totalIncome}
-        setTotalIncome={setTotalIncome}
-        totalExpense={totalExpense}
-        setTotalExpense={setTotalExpense}
-        seen={seen}
-        setSeen={setSeen}
-        togglePop={togglePop}
-        statementForUpdate={statementForUpdate}
-      />
+      <ExpenseList statementForUpdate={statementForUpdate} />
 
       {/* <button onClick={togglePop}>AddExpenses</button> */}
       {/* {seen ? <AddExpenses toggle={togglePop} /> : null} */}
