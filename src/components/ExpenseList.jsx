@@ -2,23 +2,30 @@ import { useContext, useState } from "react";
 import css from "./ExpenseList.module.css";
 import { toast } from "react-toastify";
 import { full_data } from "../Context";
+import { useSelector } from "react-redux";
 
 const ExpenseList = (props) => {
 
-  const [statements, setStatements] = useContext(full_data);
+  // const [statements, setStatements] = useContext(full_data);
+  const { loading, statements } = useSelector(state => state.statements)
 
-  const { totalIncome, setTotalIncome, totalExpense, setTotalExpense, seen, setSeen, togglePop, statementForUpdate } = props;
+  const { statementForUpdate } = props;
 
   const [sortField, setSortField] = useState(null)
   const [isAscending, setIsAscending] = useState(true)
 
-  let listItems = <h1 className={css.noData}>No Data Available!!</h1>
+  let listItems;
+  if(loading) {
+    listItems = <h1 className={css.noData}>Loading...!</h1>
+  } {
+    listItems = <h1 className={css.noData}>No Data Available!!</h1>
+  }
 
   if (statements.length !== 0) {
     listItems = statements.map((item, index) => {
       return <li key={index} className={css.statementList}>
         <div className={css.statement}>{item.type === 'Income' ? <span className={css.incomeArrow}>↓</span> : <span className={css.expenseArrow}>↑</span>}</div>
-        <div className={css.statement}><p className={css.para}>{item.description}</p></div>
+        <div className={css.statement}><p className={css.para}>{item.desc}</p></div>
         <div className={css.statement}>{Number(item.amount).toLocaleString('en-IN', {
           maximumFractionDigits: 2,
           style: 'currency',
@@ -35,29 +42,29 @@ const ExpenseList = (props) => {
     })
   }
 
-  const deleteHandler = (i, type, amount) => {
-    // const copyStatements = [...statements];
-    // copyStatements.splice(i, 1);
-    // setStatements(copyStatements);
+  // const deleteHandler = (i, type, amount) => {
+  //   // const copyStatements = [...statements];
+  //   // copyStatements.splice(i, 1);
+  //   // setStatements(copyStatements);
 
-    let filteredList = statements.filter((elem, idx) => idx != i);
-    setStatements(filteredList)
-    localStorage.setItem('statements', JSON.stringify(filteredList))
+  //   let filteredList = statements.filter((elem, idx) => idx != i);
+  //   setStatements(filteredList)
+  //   localStorage.setItem('statements', JSON.stringify(filteredList))
 
-    // console.log(amount, type)
+  //   // console.log(amount, type)
 
-    let total = 0;
-    if (type === 'Income') {
-      total = totalIncome - amount;
-      setTotalIncome(total)
-    }
-    else if (type === 'Expense') {
-      total = totalExpense - amount;
-      setTotalExpense(total)
-    }
+  //   let total = 0;
+  //   if (type === 'Income') {
+  //     total = totalIncome - amount;
+  //     setTotalIncome(total)
+  //   }
+  //   else if (type === 'Expense') {
+  //     total = totalExpense - amount;
+  //     setTotalExpense(total)
+  //   }
 
-    toast.warning("One statement is deleted!!")
-  }
+  //   toast.warning("One statement is deleted!!")
+  // }
 
   const sortHandler = (val) => {
 
@@ -90,16 +97,16 @@ const ExpenseList = (props) => {
             Description
           </div>
           <div className={css.statementsData} onClick={(e) => sortHandler('amount')}>
-            Amount <i className="ri-arrow-up-down-fill"></i>
+            Amount {/*<i className="ri-arrow-up-down-fill"></i>*/}
           </div>
           <div className={css.statementsData} onClick={(e) => sortHandler('type')}>
-            Type <i className="ri-arrow-up-down-fill"></i>
+            Type {/*<i className="ri-arrow-up-down-fill"></i>*/}
           </div>
           <div className={css.statementsData} onClick={(e) => sortHandler('category')}>
-            Category <i className="ri-arrow-up-down-fill"></i>
+            Category {/*<i className="ri-arrow-up-down-fill"></i>*/}
           </div>
           <div className={css.statementsData} onClick={(e) => sortHandler('date')}>
-            Date <i className="ri-arrow-up-down-fill"></i>
+            Date {/*<i className="ri-arrow-up-down-fill"></i>*/}
           </div>
           <div className={css.statementsData}>Update & Delete</div>
         </div>

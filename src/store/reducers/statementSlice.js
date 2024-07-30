@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../utils/axiosInstance";
-import { useSelector } from "react-redux";
 import { homepage } from "./userSlice";
 
 const statements = {
@@ -25,7 +24,7 @@ export const addStatement = createAsyncThunk(
         },
         { withCredentials: true }
       );
-      thunkAPI.dispatch(homepage())
+      thunkAPI.dispatch(homepage());
       //   console.log(response);
       return response.data.response;
     } catch (error) {
@@ -35,26 +34,37 @@ export const addStatement = createAsyncThunk(
   }
 );
 
-export const viewStatement = createAsyncThunk(async (_, thunkAPI) => {
-  try {
-    const response = await axiosInstance.get("/statement/view", {
-      withCredentials: true,
-    });
-    console.log(response);
-  } catch (error) {
-    console.log(error);
-    return thunkAPI.rejectWithValue(error.response);
+export const viewStatement = createAsyncThunk(
+  "/statement/view",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get("/statement/view", {
+        withCredentials: true,
+      });
+      // console.log(response.data.response);
+      return response.data.response;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response);
+    }
   }
-});
+);
 
 const statementSlice = createSlice({
-  name: "statement",
+  name: "statements",
   initialState: statements,
-  reducers: {},
+  reducers: {
+    removeStatements(state){
+      state.statements = [];
+      state.message = "";
+      state.error = null;
+      state.loading = false;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addStatement.pending, (state) => {
-        (state.loading = true), (state.error = null), (state.message = null);
+        (state.loading = true), (state.error = null), (state.message = "");
       })
       .addCase(addStatement.fulfilled, (state, action) => {
         (state.loading = false),
@@ -64,25 +74,27 @@ const statementSlice = createSlice({
       .addCase(addStatement.rejected, (state, action) => {
         (state.loading = false),
           (state.error = action.payload),
-          (state.message = null);
+          (state.message = "");
       });
 
     builder
       .addCase(viewStatement.pending, (state) => {
-        (state.loading = true), (state.error = null), (state.message = null);
+        (state.loading = true), (state.error = null), (state.message = "");
       })
       .addCase(viewStatement.fulfilled, (state, action) => {
-        (state.loading = false),
-          (state.statements = action.payload),
-          (state.error = null);
+        state.loading = false;
+        state.error = null;
+        // console.log(action.payload)
+        state.statements = action.payload;
+        state.message = "Fetched Statements"
       })
       .addCase(viewStatement.rejected, (state, action) => {
         (state.loading = false),
           (state.error = action.payload),
-          (state.message = null);
+          (state.message = "");
       });
   },
 });
 
-export const {} = statementSlice.actions;
+export const { removeStatements } = statementSlice.actions;
 export default statementSlice.reducer;

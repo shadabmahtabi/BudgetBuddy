@@ -14,12 +14,15 @@ import { viewStatement } from "../store/reducers/statementSlice";
 const Allcomponents = () => {
   const dispatch = useDispatch();
   const { user, error } = useSelector(state => state.user)
+  const { loading, statements, message } = useSelector(state => state.statements)
+  console.log({ loading, statements, message })
 
   useEffect(() => {
     dispatch(homepage())
   }, []);
 
-  const [statements, setStatements] = useContext(full_data);
+
+  // const [statements, setStatements] = useContext(full_data);
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalExpense, setTotalExpense] = useState(0);
   const [seen, setSeen] = useState(false);
@@ -214,16 +217,11 @@ const Allcomponents = () => {
 
       {/* <Nav /> */}
 
-      <Home
-        totalIncome={totalIncome}
-        setTotalIncome={setTotalIncome}
-        totalExpense={totalExpense}
-        setTotalExpense={setTotalExpense}
-      />
+      <Home />
 
       <Form
-        statements={statements}
-        setStatements={setStatements}
+        // statements={statements}
+        // setStatements={setStatements}
         totalIncome={totalIncome}
         setTotalIncome={setTotalIncome}
         totalExpense={totalExpense}
@@ -246,8 +244,8 @@ const Allcomponents = () => {
       />
 
       <ExpenseList
-        statements={statements}
-        setStatements={setStatements}
+        // statements={statements}
+        // setStatements={setStatements}
         totalIncome={totalIncome}
         setTotalIncome={setTotalIncome}
         totalExpense={totalExpense}
@@ -258,33 +256,8 @@ const Allcomponents = () => {
         statementForUpdate={statementForUpdate}
       />
 
-      {/* <TransactionTable
-        statements={statements}
-        setStatements={setStatements}
-        totalIncome={totalIncome}
-        setTotalIncome={setTotalIncome}
-        totalExpense={totalExpense}
-        setTotalExpense={setTotalExpense}
-        seen={seen}
-        setSeen={setSeen}
-        togglePop={togglePop}
-        statementForUpdate={statementForUpdate}
-      /> */}
-
       {/* <button onClick={togglePop}>AddExpenses</button> */}
       {/* {seen ? <AddExpenses toggle={togglePop} /> : null} */}
-
-      {/* {seen ?
-        <div className={css.updateFormDiv}>
-        <div className={css.updateForm}>
-        <button toggle={togglePop}>click</button>
-        </div>
-        </div>
-        : null} */}
-
-      {/* <Extra transactions={statements}/> */}
-
-      {/* <TransactionTable transactions={statements}/> */}
     </div>
   );
 };

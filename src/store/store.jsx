@@ -5,6 +5,6 @@ import statementSlice from "./reducers/statementSlice";
 export const store = configureStore({
     reducer: {
         user: userSlice,
-        statement: statementSlice
+        statements: statementSlice,
     }
 })

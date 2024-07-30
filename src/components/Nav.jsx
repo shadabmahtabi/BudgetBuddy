@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../store/reducers/userSlice";
 import { toast } from "react-toastify";
+import { removeStatements } from "../store/reducers/statementSlice";
 
 const Nav = () => {
   const [seen, setSeen] = useState(false);
@@ -13,6 +14,7 @@ const Nav = () => {
   const handleLogout = () => {
     // console.log("clicked");
     dispatch(signOut());
+    dispatch(removeStatements())
   };
 
   return (

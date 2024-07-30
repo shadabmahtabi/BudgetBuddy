@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../utils/axiosInstance";
+import { viewStatement } from "./statementSlice";
 
 const userState = {
   loading: false,
@@ -14,6 +15,7 @@ export const homepage = createAsyncThunk(
     // Include the second argument, thunkAPI
     try {
       const response = await axiosInstance.get(`/user`);
+      thunkAPI.dispatch(viewStatement())
       return response.data.response;
     } catch (error) {
       // console.log(error.response.data.message)
@@ -37,8 +39,12 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("token", response.data.response);
       return response.data.response;
     } catch (error) {
-      // console.log(error.response.data)
-      return thunkAPI.rejectWithValue(error.response.data.response);
+      if (error.message === 'Network Error') {
+        // console.log(error.message)
+        return thunkAPI.rejectWithValue(error.message);
+      } else {
+        return thunkAPI.rejectWithValue(error.response.data.response);
+      }
     }
   }
 );
@@ -57,8 +63,12 @@ export const registerUser = createAsyncThunk(
       // console.log(response.data.response)
       return response.data.response;
     } catch (error) {
-      // console.log(error.response.data);
-      return thunkAPI.rejectWithValue(error.response.data.response);
+      if (error.message === 'Network Error') {
+        // console.log(error.message)
+        return thunkAPI.rejectWithValue(error.message);
+      } else {
+        return thunkAPI.rejectWithValue(error.response.data.response);
+      }
     }
   }
 );

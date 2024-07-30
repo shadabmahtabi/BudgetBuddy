@@ -4,12 +4,11 @@ import { toast } from "react-toastify";
 import { full_data } from "../Context";
 import { useDispatch, useSelector } from "react-redux";
 import { addStatement } from "../store/reducers/statementSlice";
-import { homepage } from "../store/reducers/userSlice";
 
 const CreateForm = (props) => {
 
   const dispatch = useDispatch();
-  const { loading, error, message } = useSelector(state => state.statement)
+  const { loading, error, message } = useSelector(state => state.statements)
 
   const [statements, setStatements] = useContext(full_data);
 
