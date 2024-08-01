@@ -126,12 +126,16 @@
     position: absolute;
     top: 25%;
     left: 5%;
-    height: 22vmax;
-    width: 22vmax;
+    height: 50vmin;
+    width: 50vmin;
   }
 
   .mainHeading {
-    font-size: 3.5vmax;
+    font-size: 8vmin;
+  }
+
+  .headingSpan {
+    font-size: 8vmin;
   }
 
   .smallCircles {

@@ -32,12 +32,12 @@ const Nav = () => {
         <a href="#ViewStatements" className={css.link}>
           <i className="ri-eye-2-fill"></i> View Statements
         </a>
-        <a href="#" className={css.link}>
+        {/* <a href="#" className={css.link}>
         <i className="ri-phone-fill"></i> Contact Us
-        </a>
-        <a href="#" className={css.link}>
+        </a> */}
+        {/* <a href="#" className={css.link}>
           <i className="ri-user-fill"></i> Account
-        </a>
+        </a> */}
         <div
             className={css.link}
             onClick={() => {

@@ -10,15 +10,10 @@ const CreateForm = (props) => {
   const dispatch = useDispatch();
   const { loading, error, message } = useSelector(state => state.statements)
 
-  const [statements, setStatements] = useContext(full_data);
-
-  const { totalIncome, setTotalIncome, totalExpense, setTotalExpense, amount, setAmount, type, setType, category, setCategory, description, setDescription, date, setDate, selectionOptions, setSelectionOptions, time, setTime, selectionHandler } = props;
-
-  let totalAmount = 0;
+  const { amount, setAmount, type, setType, category, setCategory, description, setDescription, date, setDate, selectionOptions, setSelectionOptions, selectionHandler } = props;
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    // console.log(new Date(date).toLocaleDateString())
 
     // validation
     if (amount === "") {
@@ -41,25 +36,11 @@ const CreateForm = (props) => {
       return setDescription('No description provided.')
     }
 
-    let newStatement = { amount, category, type, description, date, time };
+    let newStatement = { amount, category, type, description, date };
     
     dispatch(addStatement(newStatement))
-    // console.log(newStatement)
-    const copyStatements = [...statements];
-    copyStatements.push(newStatement);
-    setStatements(copyStatements)
-    localStorage.setItem('statements', JSON.stringify(copyStatements))
 
-    if (type === 'Income') {
-      totalAmount = Number(totalIncome) + Number(amount);
-      setTotalIncome(totalAmount)
-    }
-    else {
-      totalAmount = Number(totalExpense) + Number(amount);
-      setTotalExpense(totalAmount)
-    }
-
-    toast.success(message || "Statement added.")
+    // toast.success(message || "Statement added.")
 
     setAmount('')
 

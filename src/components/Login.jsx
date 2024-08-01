@@ -35,9 +35,7 @@ const Login = () => {
     };
 
     dispatch(loginUser(credentials)).then((result) => {
-      if (result.error) {
-        toast.error(error);
-      } else {
+      if (!result.error) {
         // toast.success("Logged in successfully");
         setEmail("");
         setPassword("");

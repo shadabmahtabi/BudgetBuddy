@@ -25,10 +25,10 @@ export const addStatement = createAsyncThunk(
         { withCredentials: true }
       );
       thunkAPI.dispatch(homepage());
-      //   console.log(response);
+      // console.log(response);
       return response.data.response;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return thunkAPI.rejectWithValue(error.response);
     }
   }
@@ -44,7 +44,7 @@ export const viewStatement = createAsyncThunk(
       // console.log(response.data.response);
       return response.data.response;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return thunkAPI.rejectWithValue(error.response);
     }
   }
@@ -55,10 +55,11 @@ export const deleteStatement = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axiosInstance.delete(`/statement/delete/${id}`);
-      console.log(response);
+      // console.log(response);
+      thunkAPI.dispatch(homepage());
       return response.data.response;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       return thunkAPI.rejectWithValue(error.response);
     }
   }

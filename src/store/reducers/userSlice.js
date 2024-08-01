@@ -15,7 +15,7 @@ export const homepage = createAsyncThunk(
     // Include the second argument, thunkAPI
     try {
       const response = await axiosInstance.get(`/user`);
-      thunkAPI.dispatch(viewStatement())
+      thunkAPI.dispatch(viewStatement());
       return response.data.response;
     } catch (error) {
       // console.log(error.response.data.message)
@@ -39,8 +39,8 @@ export const loginUser = createAsyncThunk(
       localStorage.setItem("token", response.data.response);
       return response.data.response;
     } catch (error) {
-      if (error.message === 'Network Error') {
-        // console.log(error.message)
+      if (error.message === "Network Error") {
+        // console.log(error)
         return thunkAPI.rejectWithValue(error.message);
       } else {
         return thunkAPI.rejectWithValue(error.response.data.response);
@@ -63,7 +63,7 @@ export const registerUser = createAsyncThunk(
       // console.log(response.data.response)
       return response.data.response;
     } catch (error) {
-      if (error.message === 'Network Error') {
+      if (error.message === "Network Error") {
         // console.log(error.message)
         return thunkAPI.rejectWithValue(error.message);
       } else {
@@ -94,9 +94,11 @@ const userSlice = createSlice({
       })
       .addCase(homepage.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload || action.error.message;
+        console.log(action.payload);
+        state.error = action.payload || action.error.message || "Connection refused!";
         if (
           action.payload === "User not found" ||
+          action.payload === undefined ||
           action.error.message === "User not found"
         ) {
           state.user = null;

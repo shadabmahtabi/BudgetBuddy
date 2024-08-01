@@ -115,32 +115,6 @@ const Allcomponents = () => {
       return setDescription("No description provided.");
     }
 
-    const copyStatements = [...statements];
-    const oldStatement = { ...statements[active] };
-    // console.log(oldStatement)
-
-    let updatedStatement = { amount, category, type, description, date, time };
-    console.log(updatedStatement);
-    copyStatements[active] = { ...oldStatement, ...updatedStatement };
-    setStatements(copyStatements);
-    localStorage.setItem("statements", JSON.stringify(copyStatements));
-
-    if (updatedStatement.type === "Income") {
-      totalAmount =
-        Number(totalIncome) -
-        Number(oldStatement.amount) +
-        Number(updatedStatement.amount);
-      setTotalIncome(totalAmount);
-      // localStorage.setItem('totalAmount', JSON.stringify({totalIncome: totalAmount, totalExpense}))
-    } else if (updatedStatement.type === "Expense") {
-      totalAmount =
-        Number(totalExpense) -
-        Number(oldStatement.amount) +
-        Number(updatedStatement.amount);
-      setTotalExpense(totalAmount);
-      // localStorage.setItem('totalAmount', JSON.stringify({totalIncome, totalExpense: totalAmount}))
-    }
-
     toast.success("Statement is updated.");
 
     togglePop();
