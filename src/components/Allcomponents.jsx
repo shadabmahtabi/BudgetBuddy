@@ -9,7 +9,10 @@ import TransactionTable from "./TransactionTable";
 import { full_data } from "../Context";
 import { useDispatch, useSelector } from "react-redux";
 import { homepage } from "../store/reducers/userSlice";
-import { viewStatement } from "../store/reducers/statementSlice";
+import {
+  updateStatement,
+  viewStatement,
+} from "../store/reducers/statementSlice";
 
 const Allcomponents = () => {
   const dispatch = useDispatch();
@@ -30,6 +33,7 @@ const Allcomponents = () => {
 
   // ----------------- copied --------------------
 
+  const [id, setId] = useState(0);
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("Choose Type");
   const [category, setCategory] = useState("Choose Statement Category");
@@ -76,20 +80,27 @@ const Allcomponents = () => {
 
   let togglePop = () => {
     setSeen(!seen);
+    setActive(null);
+    setId(0);
+    setAmount("");
+    setType("");
+    setCategory("");
+    setDate("");
+    setDescription("");
+    setTime("");
   };
 
   const statementForUpdate = (idx) => {
     // console.log(idx)
     togglePop();
     setActive(idx);
+    setId(statements[idx]._id);
     setAmount(statements[idx].amount);
     setType(statements[idx].type);
     setCategory(statements[idx].category);
     setDate(statements[idx].date);
-    setDescription(statements[idx].description);
+    setDescription(statements[idx].desc);
   };
-
-  let totalAmount = 0;
 
   const UpdateHandler = (e) => {
     e.preventDefault();
@@ -115,11 +126,19 @@ const Allcomponents = () => {
       return setDescription("No description provided.");
     }
 
+    dispatch(
+      updateStatement({
+        id,
+        userData: { amount, type, category, date, description },
+      })
+    );
+
     toast.success("Statement is updated.");
 
     togglePop();
 
     setActive(null);
+    setId(0);
     setAmount("");
     setType("");
     setCategory("");

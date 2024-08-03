@@ -65,6 +65,24 @@ export const deleteStatement = createAsyncThunk(
   }
 );
 
+export const updateStatement = createAsyncThunk(
+  "statement/update",
+  async (data, thunkAPI) => {
+    try {
+      const response = await axiosInstance.put(
+        `/statement/update/${data.id}`,
+        data.userData
+      );
+      console.log(response);
+      thunkAPI.dispatch(homepage());
+      return response.data.response;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.response);
+    }
+  }
+);
+
 const statementSlice = createSlice({
   name: "statements",
   initialState: statements,
@@ -84,7 +102,8 @@ const statementSlice = createSlice({
       .addCase(addStatement.fulfilled, (state, action) => {
         (state.loading = false),
           (state.message = action.payload),
-          (state.error = null);
+          (state.error = null),
+          state.message = "Statement added.";
       })
       .addCase(addStatement.rejected, (state, action) => {
         (state.loading = false),
@@ -101,13 +120,14 @@ const statementSlice = createSlice({
         state.error = null;
         // console.log(action.payload)
         state.statements = action.payload;
-        state.message = "Fetched Statements";
+        state.message = "Statements fetched.";
       })
       .addCase(viewStatement.rejected, (state, action) => {
         (state.loading = false),
           (state.error = action.payload),
           (state.message = "");
       });
+
     builder
       .addCase(deleteStatement.pending, (state) => {
         state.loading = true;
@@ -117,13 +137,35 @@ const statementSlice = createSlice({
       .addCase(deleteStatement.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log(action.payload)
-        state.message = "Delete Statement";
+        console.log(action.payload);
+        state.message = "Statement deleted.";
         state.statements = state.statements.filter(
           (itm) => itm._id != action.payload._id
-        )
+        );
       })
       .addCase(deleteStatement.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+
+    builder
+      .addCase(updateStatement.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.message = "";
+      })
+      .addCase(updateStatement.fulfilled, (state, action) => {
+        state.loading = false;
+        state.error = null;
+        state.statements = state.statements.map((item) => {
+          if (item._id === action.payload._id) {
+            return action.payload;
+          }
+          return item;
+        });
+        state.message = "Statement deleted.";
+      })
+      .addCase(updateStatement.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
