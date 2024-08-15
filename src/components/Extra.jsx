@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-const TransactionTable = ({ transactions }) => {
+const TransactionTable = () => {
+
+    const { loading, statements } = useSelector((state) => state.statements);
+
     const [sortedField, setSortedField] = useState(null);
     const [isAscending, setIsAscending] = useState(true);
 
@@ -15,9 +19,9 @@ const TransactionTable = ({ transactions }) => {
         }
     };
 
-    // console.log(transactions)
+    // console.log(statements)
 
-    const sortedTransactions = [...transactions].sort((a, b) => {
+    const sortedstatements = [...statements].sort((a, b) => {
         const aValue = a[sortedField];
         const bValue = b[sortedField];
         // console.log(aValue, bValue)
@@ -47,12 +51,12 @@ const TransactionTable = ({ transactions }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {sortedTransactions.map((transaction, i) => (
+                    {sortedstatements.map((transaction, i) => (
                         <tr key={i}>
                             <td>{transaction.type}</td>
                             <td>{transaction.amount}</td>
                             <td>{transaction.category}</td>
-                            <td>{transaction.dateString.getDate()}</td>
+                            <td>{transaction.date}</td>
                             {/* Render other transaction data */}
                         </tr>
                     ))}

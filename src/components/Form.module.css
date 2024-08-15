@@ -74,6 +74,15 @@
 .amountInput:last-child {
   width: 36%;
   font-size: 1.1vmax;
+  /* color: #717171; */
+}
+
+.defaultColor {
+  color: #717171;
+}
+
+.changedColor {
+  color: #222e50;
 }
 
 .amountInput::-webkit-outer-spin-button,

@@ -1,18 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./Allcomponents.module.css";
 import Form from "./Form";
-import Nav from "./Nav";
 import ExpenseList from "./ExpenseList";
 import Home from "./Home";
 import { toast } from "react-toastify";
-import TransactionTable from "./TransactionTable";
-import { full_data } from "../Context";
 import { useDispatch, useSelector } from "react-redux";
 import { homepage } from "../store/reducers/userSlice";
-import {
-  updateStatement,
-  viewStatement,
-} from "../store/reducers/statementSlice";
+import { updateStatement } from "../store/reducers/statementSlice";
 
 const Allcomponents = () => {
   const dispatch = useDispatch();
@@ -25,11 +19,7 @@ const Allcomponents = () => {
     dispatch(homepage());
   }, []);
 
-  // const [statements, setStatements] = useContext(full_data);
-  const [totalIncome, setTotalIncome] = useState(0);
-  const [totalExpense, setTotalExpense] = useState(0);
   const [seen, setSeen] = useState(false);
-  const [active, setActive] = useState(null);
 
   // ----------------- copied --------------------
 
@@ -39,14 +29,17 @@ const Allcomponents = () => {
   const [category, setCategory] = useState("Choose Statement Category");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [selectionOptions, setSelectionOptions] = useState();
 
   const selectionHandler = (e) => {
-    setCategory("Choose Statement Category");
+    const selectedType = e.target.value;
 
-    if (e.target.value === "Income") {
-      setType(e.target.value);
+    if (selectedType !== type) {
+      setCategory("Choose Statement Category"); // Reset category when type changes
+    }
+
+    if (selectedType === "Income") {
+      setType(selectedType);
       setSelectionOptions(
         <>
           <option value="Salary">Salary</option>
@@ -55,12 +48,12 @@ const Allcomponents = () => {
           <option value="Others">Others</option>
         </>
       );
-    } else if (e.target.value === "Expense") {
-      setType(e.target.value);
+    } else if (selectedType === "Expense") {
+      setType(selectedType);
       setSelectionOptions(
         <>
           <option value="Shopping">Shopping</option>
-          <option value="Food & Bevarages">Food & Bevarages</option>
+          <option value="Food & Beverages">Food & Beverages</option>
           <option value="Entertainment">Entertainment</option>
           <option value="Rent">Rent</option>
           <option value="Grocery">Grocery</option>
@@ -72,7 +65,8 @@ const Allcomponents = () => {
         </>
       );
     } else {
-      setSelectionOptions("");
+      setType("Choose Type"); // Reset type to default
+      setSelectionOptions(""); // Clear category options
     }
   };
 
@@ -80,26 +74,49 @@ const Allcomponents = () => {
 
   let togglePop = () => {
     setSeen(!seen);
-    setActive(null);
     setId(0);
     setAmount("");
     setType("");
     setCategory("");
     setDate("");
     setDescription("");
-    setTime("");
   };
 
   const statementForUpdate = (idx) => {
-    // console.log(idx)
     togglePop();
-    setActive(idx);
     setId(statements[idx]._id);
     setAmount(statements[idx].amount);
     setType(statements[idx].type);
     setCategory(statements[idx].category);
     setDate(statements[idx].date);
     setDescription(statements[idx].desc);
+
+    // Set the category options based on the type
+    if (statements[idx].type === "Income") {
+      setSelectionOptions(
+        <>
+          <option value="Salary">Salary</option>
+          <option value="Cashback">Cashback</option>
+          <option value="Gift Cards">Gift Cards</option>
+          <option value="Others">Others</option>
+        </>
+      );
+    } else if (statements[idx].type === "Expense") {
+      setSelectionOptions(
+        <>
+          <option value="Shopping">Shopping</option>
+          <option value="Food & Beverages">Food & Beverages</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Rent">Rent</option>
+          <option value="Grocery">Grocery</option>
+          <option value="Health">Health</option>
+          <option value="Education">Education</option>
+          <option value="Utility Bills">Utility Bills</option>
+          <option value="Savings">Savings</option>
+          <option value="Others">Others</option>
+        </>
+      );
+    }
   };
 
   const UpdateHandler = (e) => {
@@ -137,14 +154,12 @@ const Allcomponents = () => {
 
     togglePop();
 
-    setActive(null);
     setId(0);
     setAmount("");
     setType("");
     setCategory("");
     setDate("");
     setDescription("");
-    setTime("");
   };
 
   let pop;
@@ -213,12 +228,6 @@ const Allcomponents = () => {
       <Home />
 
       <Form
-        // statements={statements}
-        // setStatements={setStatements}
-        totalIncome={totalIncome}
-        setTotalIncome={setTotalIncome}
-        totalExpense={totalExpense}
-        setTotalExpense={setTotalExpense}
         amount={amount}
         setAmount={setAmount}
         type={type}
@@ -231,8 +240,6 @@ const Allcomponents = () => {
         setDate={setDate}
         selectionOptions={selectionOptions}
         setSelectionOptions={setSelectionOptions}
-        time={time}
-        setTime={setTime}
         selectionHandler={selectionHandler}
       />
 
