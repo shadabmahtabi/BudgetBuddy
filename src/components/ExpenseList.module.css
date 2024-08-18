@@ -169,12 +169,12 @@
 }
 
 .incomeArrow {
-    font-weight: 800;
+    font-weight: 600;
     color: rgb(133, 225, 133);
 }
 
 .expenseArrow {
-    font-weight: 800;
+    font-weight: 600;
     color: rgb(225, 133, 133);
 }
 
@@ -354,12 +354,12 @@
     }
     
     .incomeArrow {
-        font-weight: 800;
+        font-weight: 600;
         color: rgb(133, 225, 133);
     }
     
     .expenseArrow {
-        font-weight: 800;
+        font-weight: 600;
         color: rgb(225, 133, 133);
     }
     
