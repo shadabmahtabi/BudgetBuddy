@@ -1,84 +1,85 @@
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-Thin.ttf');
-    font-weight: 100;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-Thin.ttf");
+  font-weight: 100;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-UltraLight.ttf');
-    font-weight: 200;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-UltraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
 }
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-Light.ttf');
-    font-weight: 300;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
 }
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-Regular.ttf');
-    font-weight: 400;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
 }
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-Medium.ttf');
-    font-weight: 500;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
 }
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-SemiBold.ttf');
-    font-weight: 600;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
 }
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-Bold.ttf');
-    font-weight: 700;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
 }
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-ExtraBold.ttf');
-    font-weight: 800;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-ExtraBold.ttf");
+  font-weight: 800;
+  font-style: normal;
 }
 @font-face {
-    font-family: Gilroy;
-    src: url('./assets/font/Gilroy-Black.ttf');
-    font-weight: 900;
-    font-style: normal;
+  font-family: Gilroy;
+  src: url("./assets/font/Gilroy-Black.ttf");
+  font-weight: 900;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: satisfy;
-    src: url('./assets/font/Satisfy-Regular.ttf');
-    font-style: normal;
+  font-family: satisfy;
+  src: url("/assets/font/Satisfy-Regular.woff2") format("woff2"),
+    url("/assets/font/Satisfy-Regular.ttf") format("truetype");
+  font-style: normal;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 html,
 body {
-    height: 100%;
-    width: 100%;
-    color: #222e50;
-    font-family: Gilroy;
-    user-select: none;
-    position: relative;
+  height: 100%;
+  width: 100%;
+  color: #222e50;
+  font-family: Gilroy sans-serif;
+  user-select: none;
+  position: relative;
 }
 
 /* #fccb06 -> Golden,
