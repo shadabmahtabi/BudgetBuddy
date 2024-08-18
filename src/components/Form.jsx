@@ -55,7 +55,7 @@ const CreateForm = (props) => {
     setType("Choose Type");
     setCategory("Choose Statement Category");
     setDescription("");
-    setDate("");
+    setDate(new Date().toISOString().split('T')[0]);
     setSelectionOptions("");
   };
 
@@ -106,6 +106,7 @@ const CreateForm = (props) => {
               }`}
               value={date}
               onChange={(e) => setDate(e.target.value)}
+              max={new Date().toISOString().split('T')[0]}
             />
           </div>
           <textarea

@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
-import css from "./Allcomponents.module.css";
-import Form from "./Form";
-import ExpenseList from "./ExpenseList";
-import Home from "./Home";
+import css from "./Homepage.module.css";
+import Form from "../components/Form";
+import ExpenseList from "../components/ExpenseList";
+import Home from "../components/Home";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { homepage } from "../store/reducers/userSlice";
 import { updateStatement } from "../store/reducers/statementSlice";
 
-const Allcomponents = () => {
+const Homepage = () => {
   const dispatch = useDispatch();
-  const { user, error } = useSelector((state) => state.user);
-  const { loading, statements, message } = useSelector(
+  const { statements } = useSelector(
     (state) => state.statements
   );
 
@@ -28,7 +27,7 @@ const Allcomponents = () => {
   const [type, setType] = useState("Choose Type");
   const [category, setCategory] = useState("Choose Statement Category");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [selectionOptions, setSelectionOptions] = useState();
 
   const selectionHandler = (e) => {
@@ -158,7 +157,7 @@ const Allcomponents = () => {
     setAmount("");
     setType("");
     setCategory("");
-    setDate("");
+    setDate(new Date().toISOString().split('T')[0]);
     setDescription("");
   };
 
@@ -251,4 +250,4 @@ const Allcomponents = () => {
   );
 };
 
-export default Allcomponents;
+export default Homepage;

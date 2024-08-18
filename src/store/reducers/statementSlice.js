@@ -73,7 +73,7 @@ export const updateStatement = createAsyncThunk(
         `/statement/update/${data.id}`,
         data.userData
       );
-      console.log(response);
+      // console.log(response);
       thunkAPI.dispatch(homepage());
       return response.data.response;
     } catch (error) {

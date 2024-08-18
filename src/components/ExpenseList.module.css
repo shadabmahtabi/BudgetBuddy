@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     gap: 2vmin;
+    padding-bottom: 1vmax;
 }
 
 .mainHeading {
@@ -18,6 +19,7 @@
     justify-content: center;
     font-weight: 600;
     font-size: 2.5vmax;
+    gap: 1vmax;
 }
 
 .listBox {
@@ -192,6 +194,7 @@
         align-items: center;
         justify-content: center;
         gap: 2vmin;
+        padding-bottom: 0;
     }
     
     .mainHeading {

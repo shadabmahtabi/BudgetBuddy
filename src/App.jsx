@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Allcomponents from "./components/Allcomponents";
+import Allcomponents from "./Pages/Homepage";
 import Nav from "./components/Nav";
 import Login from "./components/Login";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./Pages/ProtectedRoute";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
