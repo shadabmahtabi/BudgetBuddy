@@ -18,7 +18,7 @@ const Homepage = () => {
   }, []);
 
   const [seen, setSeen] = useState(false);
-  const [isFilter, setIsFilter] = useState(true);
+  const [isFilter, setIsFilter] = useState(false);
 
   // ----------------- copied --------------------
 
