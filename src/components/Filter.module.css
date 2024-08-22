@@ -1,0 +1,175 @@
+/* Prevent scrolling */
+.noScroll {
+  overflow: hidden;
+}
+
+/* The blur overlay */
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  height: 100vmin;
+  width: 100vmax;
+  background-color: #0000001b;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .filterForm {
+    position: relative;
+    height: 80%;
+    width: 40%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vmax;
+    border-radius: 1vmax;
+
+    .crossBtn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 4vmax;
+      width: 4vmax;
+      /* background-color: blue; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .formHeading {
+      margin-bottom: 2vmin;
+      font-size: 2.2vmax;
+      font-weight: 600;
+    }
+
+    .rows {
+      height: 4.5vmax;
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: space-between;
+      /* background-color: rgb(223, 223, 223); */
+
+      .rowLabel {
+        font-size: 1.2vmax;
+        font-weight: 500;
+      }
+
+      .subRows {
+        height: 60%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        /* background-color: blue; */
+
+        .transferType,
+        .timePeriod,
+        .amountInput {
+          height: 100%;
+          width: 49%;
+          padding: 0 1vmax;
+          font-size: 1vmax;
+          border-radius: 0.8vmax;
+          border: 0.15vmax solid #a6a6a6;
+          outline: none;
+          background-color: #fff;
+        }
+
+        .amountInput::-webkit-outer-spin-button,
+        .amountInput::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+    }
+
+    .sortRow,
+    .btnRow {
+      height: 2.5vmax;
+      width: 75%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1vmax;
+
+      .sortType,
+      .btns {
+        height: 100%;
+        width: 45%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btns {
+        width: 35%;
+      }
+
+      .sortType {
+        border-radius: 1.5vmax;
+        background-color: #222e50;
+        color: #edf7f6;
+      }
+
+      .sortType:nth-child(1) {
+        background-color: #fff;
+        color: #222e50;
+        border: 0.15vmax solid #a6a6a6;
+      }
+
+      .btns {
+        font-size: 1vmax;
+        border-radius: 1vmax;
+        outline: none;
+        border: 0.15vmax solid #222e50;
+        background-color: #fff;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+
+      .btns:nth-child(1):hover {
+        background-color: #222e50;
+        color: #edf7f6;
+      }
+
+      /* .btns:nth-child(2) {
+        background-color: #ff9191;
+        color: #edf7f6;
+      } */
+
+      .btns:nth-child(2):hover {
+        background-color: #ff9191;
+        color: #edf7f6;
+      }
+    }
+
+    .btnRow {
+        height: 2.7vmax;
+    }
+
+    .searchBar {
+      height: 2.7vmax;
+      width: 75%;
+      outline: none;
+      /* border: 0.15vmax solid #222e50; */
+      border: 0.15vmax solid #a6a6a6;
+      background-color: #fff;
+      border-radius: 1vmax;
+      padding: 0.5vmax 1vmax;
+      font-size: 1.1vmax;
+      resize: none;
+      font-family: Gilroy;
+    }
+
+    :where(.searchBar, .transferType, .amountInput, .timePeriod):focus {
+      border: 0.15vmax solid #222e50;
+    }
+  }
+}

@@ -7,15 +7,15 @@ const ExpenseList = (props) => {
   const dispatch = useDispatch();
   const { loading, statements } = useSelector((state) => state.statements);
 
-  const { statementForUpdate } = props;
+  const { statementForUpdate, isFilter, setIsFilter } = props;
 
   const formatDateToIndian = (dateString) => {
-    const dateParts = dateString.split("-"); // Split the date string by '-'
+    const dateParts = dateString.split("-");
     const year = dateParts[0];
     const month = dateParts[1];
     const day = dateParts[2];
 
-    return `${day}-${month}-${year}`; // Return in DD-MM-YYYY format
+    return `${day}-${month}-${year}`;
   };
 
   // Example usage
@@ -74,7 +74,9 @@ const ExpenseList = (props) => {
             </div>
             <div className={css.forMobile}>
               <div className={css.statement}>
-                <span className={css.date}>{formatDateToIndian(item.date)}</span>
+                <span className={css.date}>
+                  {formatDateToIndian(item.date)}
+                </span>
                 <span className={css.btns}>
                   <div
                     className={css.btn}
@@ -91,7 +93,9 @@ const ExpenseList = (props) => {
                 </span>
               </div>
               <div className={css.statement}>
-                <p className={css.para}>{item.desc}</p>
+                <div className={css.paraParent}>
+                  <p className={css.para}>{item.desc}</p>
+                </div>
                 <span className={css.amt}>
                   {Number(item.amount).toLocaleString("en-IN", {
                     maximumFractionDigits: 2,
@@ -110,32 +114,6 @@ const ExpenseList = (props) => {
                   {item.type} / {item.category}
                 </span>
               </div>
-              {/* <div className={css.statement}>
-                {Number(item.amount).toLocaleString("en-IN", {
-                  maximumFractionDigits: 2,
-                  style: "currency",
-                  currency: "INR",
-                })}
-              </div>
-              <div className={css.statement}>{item.type}</div>
-              <div className={css.statement}>{item.category}</div>
-              <div className={css.statement}>
-                {formatDateToIndian(item.date)}
-              </div>
-              <div className={css.statement}>
-                <div
-                  className={css.btn}
-                  onClick={() => statementForUpdate(index)}
-                >
-                  <i className="ri-pencil-line"></i>
-                </div>
-                <div
-                  className={css.btn}
-                  onClick={() => deleteHandler(item._id)}
-                >
-                  <i className="ri-delete-bin-line"></i>
-                </div>
-              </div> */}
             </div>
           </li>
         );
@@ -147,10 +125,19 @@ const ExpenseList = (props) => {
     toast.warning("One statement is deleted!!");
   };
 
+  const filteOpener = () => {
+    setIsFilter(!isFilter);
+  }
+
   return (
     <div className={css.mainBox} id="ViewStatements">
       <h1 className={css.mainHeading}>
-        View Your Statements <i className="ri-filter-2-line" title="filter"></i>
+        View Your Statements{" "}
+        <i
+          className="ri-filter-2-line"
+          title="filter"
+          onClick={filteOpener}
+        ></i>
       </h1>
       <div className={css.listBox}>
         <div className={css.categoryBox}>

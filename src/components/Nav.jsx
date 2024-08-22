@@ -75,12 +75,12 @@ const Nav = () => {
           >
             <i className="ri-eye-2-fill"></i> View Statements
           </a>
-          <a href="#" className={css.link} onClick={() => setSeen(!seen)}>
+          {/* <a href="#" className={css.link} onClick={() => setSeen(!seen)}>
             <i className="ri-user-fill"></i> Account
-          </a>
-          <a href="#" className={css.link} onClick={() => setSeen(!seen)}>
+          </a> */}
+          {/* <a href="#" className={css.link} onClick={() => setSeen(!seen)}>
             <i className="ri-phone-fill"></i> Contact Us
-          </a>
+          </a> */}
           <div
             className={css.link}
             onClick={() => {

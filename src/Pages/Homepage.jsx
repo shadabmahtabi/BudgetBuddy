@@ -7,18 +7,18 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { homepage } from "../store/reducers/userSlice";
 import { updateStatement } from "../store/reducers/statementSlice";
+import Filter from "../components/filter";
 
 const Homepage = () => {
   const dispatch = useDispatch();
-  const { statements } = useSelector(
-    (state) => state.statements
-  );
+  const { statements } = useSelector((state) => state.statements);
 
   useEffect(() => {
     dispatch(homepage());
   }, []);
 
   const [seen, setSeen] = useState(false);
+  const [isFilter, setIsFilter] = useState(true);
 
   // ----------------- copied --------------------
 
@@ -27,7 +27,7 @@ const Homepage = () => {
   const [type, setType] = useState("Choose Type");
   const [category, setCategory] = useState("Choose Statement Category");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [selectionOptions, setSelectionOptions] = useState();
 
   const selectionHandler = (e) => {
@@ -157,7 +157,7 @@ const Homepage = () => {
     setAmount("");
     setType("");
     setCategory("");
-    setDate(new Date().toISOString().split('T')[0]);
+    setDate(new Date().toISOString().split("T")[0]);
     setDescription("");
   };
 
@@ -222,7 +222,7 @@ const Homepage = () => {
     <div className={css.appMain}>
       {pop}
 
-      {/* <Nav /> */}
+      {isFilter ? <Filter isFilter={isFilter} setIsFilter={setIsFilter} /> : ""}
 
       <Home />
 
@@ -242,7 +242,11 @@ const Homepage = () => {
         selectionHandler={selectionHandler}
       />
 
-      <ExpenseList statementForUpdate={statementForUpdate} />
+      <ExpenseList
+        statementForUpdate={statementForUpdate}
+        isFilter={isFilter}
+        setIsFilter={setIsFilter}
+      />
 
       {/* <button onClick={togglePop}>AddExpenses</button> */}
       {/* {seen ? <AddExpenses toggle={togglePop} /> : null} */}
