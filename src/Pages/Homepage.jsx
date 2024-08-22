@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { homepage } from "../store/reducers/userSlice";
 import { updateStatement } from "../store/reducers/statementSlice";
-import Filter from "../components/filter";
+import Filter from "../components/Filter";
 
 const Homepage = () => {
   const dispatch = useDispatch();
