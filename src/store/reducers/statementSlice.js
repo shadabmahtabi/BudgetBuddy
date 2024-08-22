@@ -25,10 +25,8 @@ export const addStatement = createAsyncThunk(
         { withCredentials: true }
       );
       thunkAPI.dispatch(homepage());
-      // console.log(response);
       return response.data.response;
     } catch (error) {
-      // console.log(error);
       return thunkAPI.rejectWithValue(error.response);
     }
   }
@@ -41,10 +39,8 @@ export const viewStatement = createAsyncThunk(
       const response = await axiosInstance.get("/statement/view", {
         withCredentials: true,
       });
-      // console.log(response.data.response);
       return response.data.response;
     } catch (error) {
-      // console.log(error);
       return thunkAPI.rejectWithValue(error.response);
     }
   }
@@ -55,11 +51,9 @@ export const deleteStatement = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axiosInstance.delete(`/statement/delete/${id}`);
-      // console.log(response);
       thunkAPI.dispatch(homepage());
       return response.data.response;
     } catch (error) {
-      // console.log(error);
       return thunkAPI.rejectWithValue(error.response);
     }
   }
@@ -73,11 +67,9 @@ export const updateStatement = createAsyncThunk(
         `/statement/update/${data.id}`,
         data.userData
       );
-      // console.log(response);
       thunkAPI.dispatch(homepage());
       return response.data.response;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.response);
     }
   }
@@ -118,7 +110,6 @@ const statementSlice = createSlice({
       .addCase(viewStatement.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        // console.log(action.payload)
         state.statements = action.payload;
         state.message = "Statements fetched.";
       })
@@ -137,7 +128,6 @@ const statementSlice = createSlice({
       .addCase(deleteStatement.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        console.log(action.payload);
         state.message = "Statement deleted.";
         state.statements = state.statements.filter(
           (itm) => itm._id != action.payload._id
