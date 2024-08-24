@@ -188,7 +188,7 @@ const statementSlice = createSlice({
       .addCase(filterStatements.fulfilled, (state, action) => {
         state.statementLoading = false;
         state.statementError = null;
-        console.log(action.payload);
+        // console.log(action.payload);
         state.statements = action.payload;
         state.message = "Statements filtered.";
       })

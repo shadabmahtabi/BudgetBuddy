@@ -66,7 +66,7 @@ const Filter = (props) => {
       filteredData.category = category;
     }
 
-    console.log(filteredData);
+    // console.log(filteredData);
     dispatch(filterStatements(filteredData));
 
     ClearFilterHandler(e);

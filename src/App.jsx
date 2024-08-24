@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Allcomponents from "./Pages/Homepage";
+import Homepage from "./Pages/Homepage";
 import Nav from "./components/Nav";
 import Login from "./components/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -30,7 +30,7 @@ const App = () => {
         <Routes>
           <Route exact path="/login" element={<Login />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Allcomponents />} />
+            <Route path="/" element={<Homepage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -138,21 +138,17 @@
         justify-content: center;
         font-size: 1vmax;
       }
-
-      .btns {
-        width: 35%;
-      }
-
+      
       .sortType {
         border-radius: 1.5vmax;
         font-weight: 500;
       }
-
+      
       .darkSortBtn {
         background-color: #222e50;
         color: #edf7f6;
       }
-
+      
       .lightSortBtn {
         background-color: #fff;
         /* color: #222e50; */
@@ -161,6 +157,7 @@
       }
 
       .btns {
+        width: 35%;
         font-size: 1vmax;
         border-radius: 1vmax;
         outline: none;
@@ -219,7 +216,7 @@
     width: 100vmin;
 
     .filterForm {
-      height: 50%;
+      height: 60%;
       width: 95%;
       gap: 1.5vmax;
 
@@ -234,35 +231,45 @@
       }
 
       .rows {
-        height: 6vmax;
+        height: 7vmax;
         width: 85%;
 
-        .transferType,
-        .timePeriod,
-        .amountInput {
-          border-radius: 1vmax;
+        .rowLabel {
+          font-size: 1.6vmax;
+        }
+
+        .subRows {
+          height: 65%;
+
+          .transferType,
+          .timePeriod,
+          .amountInput {
+            border-radius: 1vmax;
+            font-size: 1.4vmax;
+          }
+
+          .timePeriod::before {
+            font-size: 1.4vmax;
+          }
         }
       }
 
       .sortRow,
       .btnRow {
-        height: 3.5vmax;
+        height: 4vmax;
         width: 85%;
         gap: 1.5vmax;
+        font-size: 1.4vmax;
 
         .btns {
           height: 4vmax;
-          width: 35%;
+          width: 40%;
+          font-size: 1.4vmax;
         }
 
         .sortType {
           border-radius: 2vmax;
-        }
-
-        .sortType:nth-child(1) {
-          background-color: #fff;
-          color: #222e50;
-          border: 0.15vmax solid #a6a6a6;
+          font-size: 1.4vmax;
         }
 
         .btns:nth-child(1) {
@@ -277,9 +284,22 @@
         }
       }
 
+      .darkSortBtn {
+        background-color: #222e50;
+        color: #edf7f6;
+      }
+      
+      .lightSortBtn {
+        background-color: #fff;
+        /* color: #222e50; */
+        color: #717171;
+        border: 0.15vmax solid #a6a6a6;
+      }
+
       .searchBar {
-        height: 3.5vmax;
+        height: 4.5vmax;
         width: 85%;
+        font-size: 1.4vmax;
       }
     }
   }
