@@ -9,16 +9,19 @@ import { toast } from "react-toastify";
 
 const App = () => {
   const { error } = useSelector((state) => state.user);
+  const { statementError, message } = useSelector((state) => state.statements);
 
   useEffect(() => {
-    if (error === "Token has expired"){
+    if (error === "Token has expired") {
       toast.error("Session Expired!");
-    } else if (error === "Token is not valid"){
+    } else if (error === "Token is not valid") {
       toast.error("Invalid Session!");
+    } else if (statementError) {
+      toast.error(statementError.statusText)
     } else {
-      toast.error(error)
+      toast.error(error);
     }
-  }, [error]);
+  }, [error, statementError]);
 
   return (
     <>

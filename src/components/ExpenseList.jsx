@@ -28,8 +28,8 @@ const ExpenseList = (props) => {
     listItems = <h1 className={css.noData}>No Data Available!!</h1>;
   } else {
     listItems = statements
-      .slice()
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      // .slice()
+      // .sort((a, b) => new Date(b.date) - new Date(a.date))
       // .reverse()
       .map((item, index) => {
         return (

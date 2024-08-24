@@ -1,5 +1,5 @@
 import css from "./Nav.module.css";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo2.png";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../store/reducers/userSlice";

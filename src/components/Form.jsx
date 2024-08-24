@@ -35,7 +35,7 @@ const CreateForm = (props) => {
       return toast.error("Type field is empty!!");
     }
 
-    if (category === "Choose Statement Category") {
+    if (category === "Choose Category") {
       return toast.error("Category field is empty!!");
     }
 
@@ -53,7 +53,7 @@ const CreateForm = (props) => {
     // Reset form fields after submission
     setAmount("");
     setType("Choose Type");
-    setCategory("Choose Statement Category");
+    setCategory("Choose Category");
     setDescription("");
     setDate(new Date().toISOString().split('T')[0]);
     setSelectionOptions("");
@@ -88,14 +88,14 @@ const CreateForm = (props) => {
             <select
               value={category}
               className={`${css.selectInput} ${
-                category === "Choose Statement Category"
+                category === "Choose Category"
                   ? css.defaultColor
                   : css.changedColor
               }`}
               onChange={(e) => setCategory(e.target.value)}
             >
-              <option value="Choose Statement Category">
-                Choose Statement Category
+              <option value="Choose Category">
+                Choose Category
               </option>
               {selectionOptions}
             </select>

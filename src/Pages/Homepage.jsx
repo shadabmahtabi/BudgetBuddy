@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { homepage } from "../store/reducers/userSlice";
 import { updateStatement } from "../store/reducers/statementSlice";
-import Filter from "../components/Filter";
+import Filter from "../components/FilterStatements";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const Homepage = () => {
   const [id, setId] = useState(0);
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("Choose Type");
-  const [category, setCategory] = useState("Choose Statement Category");
+  const [category, setCategory] = useState("Choose Category");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [selectionOptions, setSelectionOptions] = useState();
@@ -34,7 +34,7 @@ const Homepage = () => {
     const selectedType = e.target.value;
 
     if (selectedType !== type) {
-      setCategory("Choose Statement Category"); // Reset category when type changes
+      setCategory("Choose Category"); // Reset category when type changes
     }
 
     if (selectedType === "Income") {
@@ -75,8 +75,8 @@ const Homepage = () => {
     setSeen(!seen);
     setId(0);
     setAmount("");
-    setType("");
-    setCategory("");
+    setType("Choose Type");
+    setCategory("Choose Category");
     setDate("");
     setDescription("");
   };
@@ -155,8 +155,8 @@ const Homepage = () => {
 
     setId(0);
     setAmount("");
-    setType("");
-    setCategory("");
+    setType("Choose Type");
+    setCategory("Choose Category");
     setDate(new Date().toISOString().split("T")[0]);
     setDescription("");
   };
@@ -194,8 +194,8 @@ const Homepage = () => {
               defaultValue={category}
               onChange={(e) => setCategory(e.target.value)}
             >
-              <option value="Choose Statement Category">
-                Choose Statement Category
+              <option value="Choose Category">
+                Choose Category
               </option>
               {selectionOptions}
             </select>
@@ -222,7 +222,21 @@ const Homepage = () => {
     <div className={css.appMain}>
       {pop}
 
-      {isFilter ? <Filter isFilter={isFilter} setIsFilter={setIsFilter} /> : ""}
+      {isFilter ? (
+        <Filter
+          isFilter={isFilter}
+          setIsFilter={setIsFilter}
+          selectionOptions={selectionOptions}
+          setSelectionOptions={setSelectionOptions}
+          selectionHandler={selectionHandler}
+          type={type}
+          setType={setType}
+          category={category}
+          setCategory={setCategory}
+        />
+      ) : (
+        ""
+      )}
 
       <Home />
 
