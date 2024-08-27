@@ -23,8 +23,6 @@ const App = () => {
     }
   }, [error, statementError]);
 
-  console.log(token);
-
   return (
     <>
       <Nav />
