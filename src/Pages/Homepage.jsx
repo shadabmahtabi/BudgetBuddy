@@ -11,10 +11,13 @@ import Filter from "../components/FilterStatements";
 
 const Homepage = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   const { statements } = useSelector((state) => state.statements);
 
   useEffect(() => {
-    dispatch(homepage());
+    if (user === null) {
+      dispatch(homepage());
+    }
   }, []);
 
   const [seen, setSeen] = useState(false);
@@ -194,9 +197,7 @@ const Homepage = () => {
               defaultValue={category}
               onChange={(e) => setCategory(e.target.value)}
             >
-              <option value="Choose Category">
-                Choose Category
-              </option>
+              <option value="Choose Category">Choose Category</option>
               {selectionOptions}
             </select>
             <input

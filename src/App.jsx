@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 const App = () => {
-  const { error } = useSelector((state) => state.user);
+  const { error, token } = useSelector((state) => state.user);
   const { statementError, message } = useSelector((state) => state.statements);
 
   useEffect(() => {
@@ -17,21 +17,35 @@ const App = () => {
     } else if (error === "Token is not valid") {
       toast.error("Invalid Session!");
     } else if (statementError) {
-      toast.error(statementError.statusText)
+      toast.error(statementError.statusText);
     } else {
       toast.error(error);
     }
   }, [error, statementError]);
+
+  console.log(token);
 
   return (
     <>
       <Nav />
       <BrowserRouter>
         <Routes>
-          <Route exact path="/login" element={<Login />} />
-          <Route element={<ProtectedRoute />}>
+          <Route
+            element={<ProtectedRoute token={token === null ? false : true} />}
+          >
             <Route path="/" element={<Homepage />} />
           </Route>
+          <Route
+            path="/login"
+            element={
+              <ProtectedRoute
+                token={token === null ? true : false}
+                redirectPath="/"
+              >
+                <Login />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

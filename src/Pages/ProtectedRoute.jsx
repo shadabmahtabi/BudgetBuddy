@@ -3,19 +3,18 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import Loader from "../components/Loader";
 
-const ProtectedRoute = ({ redirectPath = "/login" }) => {
-  const { token, user, loading } = useSelector((state) => state.user);
-  // console.log(token);
+const ProtectedRoute = ({ children, token, redirectPath = "/login" }) => {
+  const { loading } = useSelector((state) => state.user);
+
+  if (loading && token) {
+    return <Loader />;
+  }
 
   if (!token) {
     return <Navigate to={redirectPath} />;
   }
 
-  if(loading && user === null) {
-    return <Loader />;
-  }
-
-  return <Outlet />;
+  return children ? children : <Outlet />;
 };
 
 export default ProtectedRoute;
